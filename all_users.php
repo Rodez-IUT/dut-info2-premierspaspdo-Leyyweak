@@ -27,7 +27,7 @@ try {
      throw new PDOException($e->getMessage(), (int)$e->getCode());
 }
 
-$stmt = $pdo->query('SELECT * FROM users AS user JOIN status AS s ON status_id=s.id ORDER BY username ');
+$stmt = $pdo->query('SELECT * FROM users AS user JOIN status AS s ON status_id=s.id ORDER BY username');
 while ($row = $stmt->fetch())
 {
 	
