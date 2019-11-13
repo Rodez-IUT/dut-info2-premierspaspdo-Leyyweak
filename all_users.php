@@ -9,7 +9,6 @@
 		<td>Email</td>
 		<td>Status</td>
 	</tr>
-<tr>
 <?php 
 $host = 'localhost';
 $db   = 'my-activities';
@@ -28,35 +27,19 @@ try {
      throw new PDOException($e->getMessage(), (int)$e->getCode());
 }
 
-$stmt = $pdo->query('SELECT * FROM users');
+$stmt = $pdo->query('SELECT * FROM users AS user JOIN status AS s ON status_id=s.id ORDER BY username ');
 while ($row = $stmt->fetch())
 {
-    echo $row['id'] . "\n";
-	echo $row['username'] . "\n";
-	echo $row['email'] . "\n";
-}
-
-$stmt = $pdo->query('SELECT username FROM users');
-while ($row = $stmt->fetch())
-{
-    echo $row['username'] . "\n";
-}
-
-$stmt = $pdo->query('SELECT email FROM users');
-while ($row = $stmt->fetch())
-{
-    echo $row['email'] . "\n";
-}
-
-$stmt = $pdo->query('SELECT status_id FROM users');
-while ($row = $stmt->fetch())
-{
-    echo $row['status_id'] . "\n";
+	
+    echo "<tr>";
+	echo "<td>".$row['id']."</td>";
+	echo "<td>".$row['username']."</td>";
+	echo "<td>".$row['email']."</td>";
+	echo "</tr>";
 }
 
 
 ?>
-</tr>
 </table>
 </body>
 </html>
